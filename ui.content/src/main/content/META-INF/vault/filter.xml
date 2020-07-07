@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/angularjs-simple-example" mode="merge"/>
+    <filter root="/content/angularjs-simple-example" mode="merge"/>
+    <filter root="/content/dam/angularjs-simple-example" mode="merge"/>
+    <filter root="/content/experience-fragments/angularjs-simple-example" mode="merge"/>
+</workspaceFilter>
