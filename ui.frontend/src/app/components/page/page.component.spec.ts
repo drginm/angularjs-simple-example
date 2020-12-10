@@ -13,15 +13,21 @@
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+// @ts-nocheck
 
 import { SpaAngularEditableComponentsModule } from '@adobe/cq-angular-editable-components';
-import { ModelManager } from '@adobe/cq-spa-page-model-manager';
+import { Model, ModelManager } from '@adobe/cq-spa-page-model-manager';
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppRoutingModule } from '../../app-routing.module';
 import { ModelManagerService } from '../model-manager.service';
 import { PageComponent } from './page.component';
 
+/*
+  Fixes for the previous version of the tests
+  https://github.com/adobe/aem-guides-wknd-spa/issues/9
+  https://github.com/adobe/aem-project-archetype/pull/461/files
+*/
 describe('PageComponentComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
@@ -39,9 +45,11 @@ describe('PageComponentComponent', () => {
 
   beforeEach(() => {
     // Stub ModelManager
-    spyOn(ModelManager, 'getData').and.callFake(() => {
-      return Promise.resolve({});
+    const promise: Promise<Model> = new Promise<Model>((resolve, reject) => {
+      resolve({});
     });
+
+    spyOn(ModelManager, 'getData').and.returnValue(promise);
 
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;

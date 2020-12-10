@@ -1,0 +1,22 @@
+/*https://speckyboy.com/html-lists-style/*/
+
+ul {
+    counter-reset: list-counter;
+    list-style: none;
+    float:left;
+}
+
+ul li{
+     margin: 1.5em 0;
+    line-height: 1em
+}
+
+ul li:before{
+    content: counter(list-counter);
+    counter-increment: list-counter;
+    font-family: arial;
+    color:#666;
+    font: bold;
+    font-size: 2em;
+    margin-right: .5em;
+}
